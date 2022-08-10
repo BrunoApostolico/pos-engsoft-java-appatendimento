@@ -6,9 +6,23 @@ public class Atendente extends Pessoa{
     private String turno;
 
     @Override
-    public String toString() {
+    public void impressao() {
+        System.out.println("#atendente");
+        System.out.println(this);
+    }
 
-        return idade + ";" + formacao + ";" + turno + ";" + super.toString();
+    @Override
+    public String validaEmail() {
+
+        int maxIdade = idade + 10;
+        String statusFormacao = formacao + " completo";
+
+        return "idade max: " + maxIdade +"; "+ statusFormacao;
+    }
+
+    @Override
+    public String toString() {
+        return idade + "; " + formacao + "; " + turno + "; " + super.toString();
     }
 
     public int getIdade() {

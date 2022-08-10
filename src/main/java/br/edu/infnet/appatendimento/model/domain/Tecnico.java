@@ -6,9 +6,25 @@ public class Tecnico extends Pessoa{
     private String sexo;
 
     @Override
+    public void impressao() {
+        System.out.println("#tecnico");
+        System.out.println(this);
+    }
+
+    @Override
+    public String validaEmail() {
+        System.out.println("Valida email - tecnico;");
+
+        double adicional = diarista ? 1.1 : 1.3;
+        String addSexo = sexo + " Hetero";
+
+        return super.validaEmail() + "; " + adicional + "; " + addSexo;
+    }
+
+    @Override
     public String toString() {
 
-        return coren + ";" + diarista + ";" + sexo + ";" + super.toString();
+        return coren + "; " + diarista + "; " + sexo + "; " + super.toString();
     }
 
     public String getCoren() {

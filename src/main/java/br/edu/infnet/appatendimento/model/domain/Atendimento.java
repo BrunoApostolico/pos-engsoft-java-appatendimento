@@ -8,6 +8,11 @@ public class Atendimento {
     private LocalTime hora;
     private String local;
 
+    public void impressao() {
+        System.out.println("#atendimento");
+        System.out.println(this);
+    }
+
     @Override
     public String toString() {
 

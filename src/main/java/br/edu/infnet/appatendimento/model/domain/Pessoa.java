@@ -1,13 +1,21 @@
 package br.edu.infnet.appatendimento.model.domain;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
     private String email;
     private String telefone;
 
+    public abstract void impressao();
+
+    public String validaEmail() {
+        System.out.println("Valida e-mail = mãe;");
+        return email;
+    }
+
+
     @Override
     public String toString() {
-        return nome + ";" + email + ";" + telefone;
+        return nome + "; " + email + "; " + telefone + "; " + validaEmail();
     }
 
     public String getNome() {

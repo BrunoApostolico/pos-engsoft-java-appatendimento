@@ -6,9 +6,14 @@ public class Medico extends Pessoa{
     private boolean pediatra;
 
     @Override
-    public String toString() {
+    public void impressao() {
+        System.out.println("#medico");
+        System.out.println(this);
+    }
 
-        return crm + ";" + especialista + ";" + pediatra + ";" + super.toString();
+    @Override
+    public String toString() {
+        return crm + "; " + especialista + "; " + pediatra + "; " + super.toString();
     }
 
     public String getCrm() {
