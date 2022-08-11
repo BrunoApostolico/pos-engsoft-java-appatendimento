@@ -1,17 +1,13 @@
 package br.edu.infnet.appatendimento.model.domain;
 
-public abstract class Pessoa {
+import br.edu.infnet.appatendimento.interfaces.IPrinter;
+
+public abstract class Pessoa implements IPrinter {
     private String nome;
     private String email;
     private String telefone;
 
-    public abstract void impressao();
-
-    public String validaEmail() {
-        System.out.println("Valida e-mail = mãe;");
-        return email;
-    }
-
+    public abstract String validaEmail();
 
     @Override
     public String toString() {
@@ -41,4 +37,6 @@ public abstract class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+
 }

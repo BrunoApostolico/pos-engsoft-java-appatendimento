@@ -1,13 +1,16 @@
 package br.edu.infnet.appatendimento.model.domain;
 
+import br.edu.infnet.appatendimento.interfaces.IPrinter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Atendimento {
+public class Atendimento implements IPrinter {
     private LocalDate data;
     private LocalTime hora;
     private String local;
 
+    @Override
     public void impressao() {
         System.out.println("#atendimento");
         System.out.println(this);
@@ -15,7 +18,6 @@ public class Atendimento {
 
     @Override
     public String toString() {
-
         return data + ";" + hora + ";" + local;
     }
 

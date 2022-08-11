@@ -18,12 +18,11 @@ public class Tecnico extends Pessoa{
         double adicional = diarista ? 1.1 : 1.3;
         String addSexo = sexo + " Hetero";
 
-        return super.validaEmail() + "; " + adicional + "; " + addSexo;
+        return getEmail() + "; " + adicional + "; " + addSexo;
     }
 
     @Override
     public String toString() {
-
         return coren + "; " + diarista + "; " + sexo + "; " + super.toString();
     }
 

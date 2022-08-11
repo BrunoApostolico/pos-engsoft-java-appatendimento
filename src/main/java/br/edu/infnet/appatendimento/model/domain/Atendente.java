@@ -13,7 +13,6 @@ public class Atendente extends Pessoa{
 
     @Override
     public String validaEmail() {
-
         int maxIdade = idade + 10;
         String statusFormacao = formacao + " completo";
 

@@ -1,7 +1,9 @@
 package br.edu.infnet.appatendimento.model.domain;
 
 
-public class Paciente {
+import br.edu.infnet.appatendimento.interfaces.IPrinter;
+
+public class Paciente implements IPrinter {
     private String nome;
     private String telefone;
     private int idade;
@@ -11,7 +13,7 @@ public class Paciente {
         this.telefone = telefone;
         this.idade = idade;
     }
-
+    @Override
     public void impressao() {
         System.out.println("#paciente");
         System.out.println(this);
@@ -19,7 +21,6 @@ public class Paciente {
 
     @Override
     public String toString() {
-
         return nome + ";" + telefone + ";" + idade;
     }
 
@@ -46,4 +47,5 @@ public class Paciente {
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
 }

@@ -12,6 +12,11 @@ public class Medico extends Pessoa{
     }
 
     @Override
+    public String validaEmail() {
+        return getEmail();
+    }
+
+    @Override
     public String toString() {
         return crm + "; " + especialista + "; " + pediatra + "; " + super.toString();
     }
