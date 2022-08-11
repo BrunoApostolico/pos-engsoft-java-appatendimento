@@ -1,6 +1,7 @@
 package br.edu.infnet.appatendimento;
 
 import br.edu.infnet.appatendimento.model.domain.Tecnico;
+import br.edu.infnet.appatendimento.model.test.AppPessoa;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -22,7 +23,7 @@ public class TecnicoTeste implements ApplicationRunner {
         t1.setDiarista(true);
         t1.setSexo("Feminino");
 
-        System.out.println(t1);
+        new AppPessoa("Inclusão da técnica Priscila").relatorio(t1);
 
         Tecnico t2 = new Tecnico();
         t2.setNome("Vanessa");
@@ -32,7 +33,7 @@ public class TecnicoTeste implements ApplicationRunner {
         t2.setDiarista(true);
         t2.setSexo("Feminino");
 
-        System.out.println(t2);
+        new AppPessoa("Inclusão da técnica Vanessa").relatorio(t2);
 
         Tecnico t3 = new Tecnico();
         t3.setNome("Leandro");
@@ -42,6 +43,6 @@ public class TecnicoTeste implements ApplicationRunner {
         t3.setDiarista(false);
         t3.setSexo("Masculino");
 
-        System.out.println(t3);
+        new AppPessoa("Inclusão do técnico Leandro").relatorio(t3);
     }
 }

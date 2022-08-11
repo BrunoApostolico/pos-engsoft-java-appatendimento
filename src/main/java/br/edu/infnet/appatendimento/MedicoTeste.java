@@ -1,6 +1,7 @@
 package br.edu.infnet.appatendimento;
 
 import br.edu.infnet.appatendimento.model.domain.Medico;
+import br.edu.infnet.appatendimento.model.test.AppPessoa;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -22,7 +23,7 @@ public class MedicoTeste implements ApplicationRunner {
         med1.setEspecialista(true);
         med1.setPediatra(false);
 
-        System.out.println(med1);
+        new AppPessoa("Inclusão do médico Luiz").relatorio(med1);
 
         Medico med2 = new Medico();
         med2.setNome("Regina");
@@ -32,7 +33,7 @@ public class MedicoTeste implements ApplicationRunner {
         med2.setEspecialista(false);
         med2.setPediatra(false);
 
-        System.out.println(med2);
+        new AppPessoa("Inclusão da médica Regina").relatorio(med2);
 
         Medico med3 = new Medico();
         med3.setNome("Maria Jose");
@@ -42,6 +43,6 @@ public class MedicoTeste implements ApplicationRunner {
         med3.setEspecialista(true);
         med3.setPediatra(true);
 
-        System.out.println(med3);
+        new AppPessoa("Inclusão da médica Maria José").relatorio(med3);
     }
 }
