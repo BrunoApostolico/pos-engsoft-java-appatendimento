@@ -1,7 +1,7 @@
 package br.edu.infnet.appatendimento;
 
 import br.edu.infnet.appatendimento.model.domain.Atendente;
-import br.edu.infnet.appatendimento.model.test.AppPessoa;
+import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -23,7 +23,7 @@ public class AtendenteTeste implements ApplicationRunner {
         at1.setFormacao("Ensino Médio");
         at1.setTurno("Dia");
 
-        new AppPessoa("Inclusão da atendente Karen!!!").relatorio(at1);
+        AppImpressao.relatorio("Inclusão da atendente Karen!!!", at1);
 
         Atendente at2 = new Atendente();
         at2.setNome("Hellen");
@@ -33,7 +33,7 @@ public class AtendenteTeste implements ApplicationRunner {
         at2.setFormacao("Ensino Superior");
         at2.setTurno("Noite");
 
-        new AppPessoa("Inclusão da atendente Hellen!!!").relatorio(at2);
+        AppImpressao.relatorio("Inclusão da atendente Hellen!!!", at2);
 
         Atendente at3 = new Atendente();
         at3.setNome("Kaian");
@@ -43,6 +43,6 @@ public class AtendenteTeste implements ApplicationRunner {
         at3.setFormacao("Ensino Fundamental");
         at3.setTurno("Dia");
 
-        new AppPessoa("Inclusão do atendente Kaian!!!").relatorio(at3);
+        AppImpressao.relatorio("Inclusão do atendente Kaian!!!", at3);
     }
 }
