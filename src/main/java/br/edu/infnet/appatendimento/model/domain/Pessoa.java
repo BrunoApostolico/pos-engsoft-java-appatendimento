@@ -2,6 +2,8 @@ package br.edu.infnet.appatendimento.model.domain;
 
 import br.edu.infnet.appatendimento.interfaces.IPrinter;
 
+import java.util.Objects;
+
 public abstract class Pessoa implements IPrinter {
     private String nome;
     private String email;
@@ -12,6 +14,20 @@ public abstract class Pessoa implements IPrinter {
     @Override
     public String toString() {
         return nome + "; " + email + "; " + telefone + "; " + validaEmail();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+//        if (getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return nome.equals(pessoa.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome);
     }
 
     public String getNome() {
