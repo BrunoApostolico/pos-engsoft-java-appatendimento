@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="pt-BR">
@@ -35,7 +36,7 @@
     </div>
 </nav>
     <div class="container mt-3">
-        <h3>Classe: Atendente</h3>
+        <h3>Gerenciamento dos Atendimentos</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -45,21 +46,13 @@
                 </tr>
             </thead>
             <tbody>
+            <c:forEach var="at" items="listagem">
             <tr>
-                <td>08/08/2022</td>
-                <td>08:30</td>
-                <td>São Pedro da Aldeia</td>
+                <td>${at.data}</td>
+                <td>${at.hora}</td>
+                <td>${at.local}</td>
             </tr>
-            <tr>
-                <td>09/08/2022</td>
-                <td>09:30</td>
-                <td>Rio de Janeiro</td>
-            </tr>
-            <tr>
-                <td>10/08/2022</td>
-                <td>10:30</td>
-                <td>Cabo Frio</td>
-            </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

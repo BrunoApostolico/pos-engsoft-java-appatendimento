@@ -1,5 +1,6 @@
 package br.edu.infnet.appatendimento;
 
+import br.edu.infnet.appatendimento.controller.TecnicoController;
 import br.edu.infnet.appatendimento.model.domain.Tecnico;
 import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
@@ -22,8 +23,7 @@ public class TecnicoTeste implements ApplicationRunner {
         t1.setCoren("123123123");
         t1.setDiarista(true);
         t1.setSexo("Feminino");
-
-        AppImpressao.relatorio("Inclusão da técnica Priscila", t1);
+        TecnicoController.incluir(t1);
 
         Tecnico t2 = new Tecnico();
         t2.setNome("Vanessa");
@@ -32,8 +32,7 @@ public class TecnicoTeste implements ApplicationRunner {
         t2.setCoren("123432321");
         t2.setDiarista(true);
         t2.setSexo("Feminino");
-
-        AppImpressao.relatorio("Inclusão da técnica Vanessa", t2);
+        TecnicoController.incluir(t2);
 
         Tecnico t3 = new Tecnico();
         t3.setNome("Leandro");
@@ -42,7 +41,6 @@ public class TecnicoTeste implements ApplicationRunner {
         t3.setCoren("432432432");
         t3.setDiarista(false);
         t3.setSexo("Masculino");
-
-        AppImpressao.relatorio("Inclusão do técnico Leandro", t3);
+        TecnicoController.incluir(t3);
     }
 }

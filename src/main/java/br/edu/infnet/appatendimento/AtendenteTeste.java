@@ -1,7 +1,7 @@
 package br.edu.infnet.appatendimento;
 
+import br.edu.infnet.appatendimento.controller.AtendenteController;
 import br.edu.infnet.appatendimento.model.domain.Atendente;
-import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -22,8 +22,7 @@ public class AtendenteTeste implements ApplicationRunner {
         at1.setIdade(19);
         at1.setFormacao("Ensino Médio");
         at1.setTurno("Dia");
-
-        AppImpressao.relatorio("Inclusão da atendente Karen!!!", at1);
+        AtendenteController.incluir(at1);
 
         Atendente at2 = new Atendente();
         at2.setNome("Hellen");
@@ -32,8 +31,7 @@ public class AtendenteTeste implements ApplicationRunner {
         at2.setIdade(23);
         at2.setFormacao("Ensino Superior");
         at2.setTurno("Noite");
-
-        AppImpressao.relatorio("Inclusão da atendente Hellen!!!", at2);
+        AtendenteController.incluir(at2);
 
         Atendente at3 = new Atendente();
         at3.setNome("Kaian");
@@ -42,7 +40,6 @@ public class AtendenteTeste implements ApplicationRunner {
         at3.setIdade(21);
         at3.setFormacao("Ensino Fundamental");
         at3.setTurno("Dia");
-
-        AppImpressao.relatorio("Inclusão do atendente Kaian!!!", at3);
+        AtendenteController.incluir(at3);
     }
 }

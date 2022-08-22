@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="pt-BR">
@@ -35,43 +36,33 @@
     </div>
 </nav>
     <div class="container mt-3">
-        <h3>Classe: Atendente</h3>
+        <h3>Cadastramento de Atendente</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Telefone</th>
                     <th>Idade</th>
                     <th>Formação</th>
                     <th>Turno</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
+            <c:forEach var="a" items="${listagem}">
             <tr>
-                <td>Karen</td>
-                <td>karen@atendimento.com</td>
-                <td>24 99988-5577</td>
-                <td>19</td>
-                <td>Ensino Médio</td>
-                <td>Dia</td>
+                <td>${a.id}</td>
+                <td>${a.nome}</td>
+                <td>${a.email}</td>
+                <td>${a.telefone}</td>
+                <td>${a.idade}</td>
+                <td>${a.formacao}</td>
+                <td>${a.turno}</td>
+                <td><a href="/atendente/${a.id}/excluir">excluir</a></td>
             </tr>
-            <tr>
-                <td>Hellen</td>
-                <td>hellen@atendimento.com</td>
-                <td>24 99977-8866</td>
-                <td>23</td>
-                <td>Ensino Superior</td>
-                <td>Noite</td>
-            </tr>
-            <tr>
-                <td>Kaian</td>
-                <td>kaian@atendimento.com</td>
-                <td>24 99922-4455</td>
-                <td>21</td>
-                <td>Ensino Fundamental</td>
-                <td>Dia</td>
-            </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

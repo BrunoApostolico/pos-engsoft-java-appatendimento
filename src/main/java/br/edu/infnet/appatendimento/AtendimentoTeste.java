@@ -1,15 +1,12 @@
 package br.edu.infnet.appatendimento;
 
 import br.edu.infnet.appatendimento.model.domain.*;
-import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -55,7 +52,6 @@ public class AtendimentoTeste implements ApplicationRunner {
         Atendimento atd1 = new Atendimento(paciente1); // instanciar a classe Atendimento, criando espaço na memoria para armazenar o obj
         atd1.setLocal("Local 1");
         atd1.setPessoas(listaPessoaP1); //atribuição
-        AppImpressao.relatorio("Inclusão do atendimento 1", atd1);
 
         Set<Pessoa> listaPessoaP2 = new HashSet<Pessoa>();
         listaPessoaP2.add(t1);
@@ -65,7 +61,6 @@ public class AtendimentoTeste implements ApplicationRunner {
         Atendimento atd2 = new Atendimento(paciente2);
         atd2.setLocal("Local 2");
         atd2.setPessoas(listaPessoaP2);
-        AppImpressao.relatorio("Inclusão do atendimento 2", atd2);
 
         Set<Pessoa> listaPessoaP3 = new HashSet<Pessoa>();
         listaPessoaP3.add(at1);
@@ -77,7 +72,5 @@ public class AtendimentoTeste implements ApplicationRunner {
         Atendimento atd3 = new Atendimento(paciente3);
         atd3.setLocal("Local 3");
         atd3.setPessoas(listaPessoaP3);
-        AppImpressao.relatorio("Inclusão do atendimento 3", atd3);
-
     }
 }

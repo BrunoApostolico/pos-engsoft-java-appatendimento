@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="pt-BR">
@@ -35,43 +36,33 @@
     </div>
 </nav>
     <div class="container mt-3">
-        <h3>Classe: Tecnico</h3>
+        <h3>Cadastramento de Técnico</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Telefone</th>
                     <th>Coren</th>
                     <th>Diarista</th>
                     <th>Sexo</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
+            <c:forEach var="t" items="${listagem}">
             <tr>
-                <td>Priscila</td>
-                <td>priscila@tecnico.com</td>
-                <td>21 99363-8628</td>
-                <td>123123123</td>
-                <td>Sim</td>
-                <td>Feminino</td>
+                <td>${t.id}</td>
+                <td>${t.nome}</td>
+                <td>${t.email}</td>
+                <td>${t.telefone}</td>
+                <td>${t.coren}</td>
+                <td>${t.diarista}</td>
+                <td>${t.sexo}</td>
+                <td><a href="/tecnico/${t.id}/excluir">excluir</a> </td>
             </tr>
-            <tr>
-                <td>Vanessa</td>
-                <td>vanessa@tecnico.com</td>
-                <td>21 99112-2443</td>
-                <td>123432321</td>
-                <td>Sim</td>
-                <td>Feminino</td>
-            </tr>
-            <tr>
-                <td>Leandro</td>
-                <td>leandro@tecnico.com</td>
-                <td>21 99118-8554</td>
-                <td>432432432</td>
-                <td>Não</td>
-                <td>Masculino</td>
-            </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

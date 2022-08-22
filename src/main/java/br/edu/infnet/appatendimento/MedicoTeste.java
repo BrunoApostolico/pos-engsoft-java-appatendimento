@@ -1,7 +1,7 @@
 package br.edu.infnet.appatendimento;
 
+import br.edu.infnet.appatendimento.controller.MedicoController;
 import br.edu.infnet.appatendimento.model.domain.Medico;
-import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -22,8 +22,7 @@ public class MedicoTeste implements ApplicationRunner {
         med1.setCrm("123123123");
         med1.setEspecialista(true);
         med1.setPediatra(false);
-
-        AppImpressao.relatorio("Inclusão do médico Luiz", med1);
+        MedicoController.incluir(med1);
 
         Medico med2 = new Medico();
         med2.setNome("Regina");
@@ -32,8 +31,7 @@ public class MedicoTeste implements ApplicationRunner {
         med2.setCrm("432124223");
         med2.setEspecialista(false);
         med2.setPediatra(false);
-
-        AppImpressao.relatorio("Inclusão da médica Regina", med2);
+        MedicoController.incluir(med2);
 
         Medico med3 = new Medico();
         med3.setNome("Maria Jose");
@@ -42,7 +40,6 @@ public class MedicoTeste implements ApplicationRunner {
         med3.setCrm("643543623");
         med3.setEspecialista(true);
         med3.setPediatra(true);
-
-        AppImpressao.relatorio("Inclusão da médica Maria José", med3);
+        MedicoController.incluir(med3);
     }
 }

@@ -5,6 +5,8 @@ import br.edu.infnet.appatendimento.interfaces.IPrinter;
 import java.util.Objects;
 
 public abstract class Pessoa implements IPrinter {
+
+    private Integer id;
     private String nome;
     private String email;
     private String telefone;
@@ -54,5 +56,11 @@ public abstract class Pessoa implements IPrinter {
         this.telefone = telefone;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
