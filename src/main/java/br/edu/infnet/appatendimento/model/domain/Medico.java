@@ -1,9 +1,12 @@
 package br.edu.infnet.appatendimento.model.domain;
 
+import br.edu.infnet.appatendimento.model.exceptions.FaltaExperienciaException;
+
 public class Medico extends Pessoa{
     private String crm;
     private boolean especialista;
     private boolean pediatra;
+    private Integer anoFormacao;
 
     @Override
     public void impressao() {
@@ -12,7 +15,14 @@ public class Medico extends Pessoa{
     }
 
     @Override
-    public String validaEmail() {
+    public String validaPessoa() throws FaltaExperienciaException {
+        Integer anoAtual = 2022;
+
+        if(anoFormacao >= 2020){
+            throw new FaltaExperienciaException("Impossível preencher o ano de Formação ("+anoFormacao+") com valor maior ou igual a 2020");
+        }
+
+        Integer qtsAnosFormacao = anoAtual - anoFormacao;
         return getEmail();
     }
 
@@ -43,5 +53,12 @@ public class Medico extends Pessoa{
 
     public void setPediatra(boolean pediatra) {
         this.pediatra = pediatra;
+    }
+    public Integer getAnoFormacao() {
+        return anoFormacao;
+    }
+
+    public void setAnoFormacao(Integer anoFormacao) {
+        this.anoFormacao = anoFormacao;
     }
 }

@@ -1,6 +1,9 @@
 package br.edu.infnet.appatendimento.model.domain;
 
 import br.edu.infnet.appatendimento.interfaces.IPrinter;
+import br.edu.infnet.appatendimento.model.exceptions.AlturaMenorException;
+import br.edu.infnet.appatendimento.model.exceptions.FaltaExperienciaException;
+import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
 
 import java.util.Objects;
 
@@ -11,11 +14,11 @@ public abstract class Pessoa implements IPrinter {
     private String email;
     private String telefone;
 
-    public abstract String validaEmail();
+    public abstract String validaPessoa() throws IdadeAtendenteInvalidoException, FaltaExperienciaException, AlturaMenorException;
 
     @Override
     public String toString() {
-        return nome + "; " + email + "; " + telefone + "; " + validaEmail();
+        return nome + "; " + email + "; " + telefone;
     }
 
     @Override

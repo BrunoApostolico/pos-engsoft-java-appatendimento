@@ -1,9 +1,12 @@
 package br.edu.infnet.appatendimento.model.domain;
 
+import br.edu.infnet.appatendimento.model.exceptions.AlturaMenorException;
+
 public class Tecnico extends Pessoa{
     private String coren;
     private boolean diarista;
     private String sexo;
+    private float altura;
 
     @Override
     public void impressao() {
@@ -12,8 +15,11 @@ public class Tecnico extends Pessoa{
     }
 
     @Override
-    public String validaEmail() {
-        System.out.println("Valida email - tecnico;");
+    public String validaPessoa() throws AlturaMenorException {
+
+        if(altura < 1.5){
+            throw new AlturaMenorException("Impossível preencher a altura ("+ altura +") com valor menor que 1,50mt.");
+        }
 
         double adicional = diarista ? 1.1 : 1.3;
         String addSexo = sexo + " Hetero";
@@ -48,5 +54,13 @@ public class Tecnico extends Pessoa{
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(float altura) {
+        this.altura = altura;
     }
 }

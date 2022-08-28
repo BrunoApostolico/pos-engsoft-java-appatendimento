@@ -2,13 +2,22 @@ package br.edu.infnet.appatendimento.model.domain;
 
 
 import br.edu.infnet.appatendimento.interfaces.IPrinter;
+import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
 
 public class Paciente implements IPrinter {
     private String nome;
     private String telefone;
     private int idade;
 
-    public Paciente(String nome, String telefone, int idade){
+    public Paciente(String nome, String telefone, int idade) throws NomeInvalidoException {
+
+        if(nome == null) {
+            throw new NomeInvalidoException("Não é possível aceitar nome nulo");
+        }
+        if(nome.isEmpty()) {
+            throw new NomeInvalidoException("Não é poss´vel aceitar nome sem preenchimentoPacienteNuloException");
+        }
+
         this.nome = nome;
         this.telefone = telefone;
         this.idade = idade;

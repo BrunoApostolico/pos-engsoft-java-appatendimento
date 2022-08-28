@@ -1,6 +1,8 @@
 package br.edu.infnet.appatendimento.model.domain;
 
 import br.edu.infnet.appatendimento.interfaces.IPrinter;
+import br.edu.infnet.appatendimento.model.exceptions.AtendimentoSemPessoaException;
+import br.edu.infnet.appatendimento.model.exceptions.PacienteNuloException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,11 +15,22 @@ public class Atendimento implements IPrinter {
     private Paciente paciente;
     private Set<Pessoa> pessoas;
 
-    public Atendimento (Paciente paciente){
+    public Atendimento (Paciente paciente, Set<Pessoa> pessoas) throws PacienteNuloException, AtendimentoSemPessoaException {
+
+        if(paciente == null){
+            throw new PacienteNuloException("Impossivel criar um Atendimento sem um paciente!");
+        }
+        if(pessoas == null){
+            throw new AtendimentoSemPessoaException("Impossível criar um Atendimento sem uma listagem de pessoas associadas");
+        }
+        if(pessoas.size() < 1){
+            throw new AtendimentoSemPessoaException("Impossível criar um Atendimento sem pessoas");
+        }
+
         this.data = LocalDate.now();
         this.hora = LocalTime.now();
-
         this.paciente = paciente;
+        this.pessoas = pessoas;
     }
 
     @Override
@@ -37,15 +50,6 @@ public class Atendimento implements IPrinter {
 
     public void setLocal(String local) {
         this.local = local;
-    }
-
-
-    public Set<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(Set<Pessoa> pessoas) {
-        this.pessoas = pessoas;
     }
 
 }

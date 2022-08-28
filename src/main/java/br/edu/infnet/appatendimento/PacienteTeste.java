@@ -2,6 +2,7 @@ package br.edu.infnet.appatendimento;
 
 import br.edu.infnet.appatendimento.controller.PacienteController;
 import br.edu.infnet.appatendimento.model.domain.Paciente;
+import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
 import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,16 +14,43 @@ import org.springframework.stereotype.Component;
 public class PacienteTeste implements ApplicationRunner {
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
-        System.out.println("\n#Paciente");
+    public void run(ApplicationArguments args) {
+        System.out.println("\n####Paciente");
 
-        Paciente p1 = new Paciente("Bruno","993703274",36);
-        PacienteController.incluir(p1);
 
-        Paciente p2 = new Paciente("Priscila","993638628",36);
-        PacienteController.incluir(p2);
+        try {
+            Paciente p1 = new Paciente("Bruno","993703274",36);
+            PacienteController.incluir(p1);
+        } catch (NomeInvalidoException e) {
+            System.out.println("[ERROR] - PACIENTE" + e.getMessage());
+        }
 
-        Paciente p3 = new Paciente("Eloah","999998877",6);
-        PacienteController.incluir(p3);
+        try {
+            Paciente p2 = new Paciente("Priscila","993638628",36);
+            PacienteController.incluir(p2);
+        } catch (NomeInvalidoException e) {
+            System.out.println("[ERROR] - PACIENTE" + e.getMessage());
+        }
+
+        try {
+            Paciente p3 = new Paciente("Eloah","999998877",6);
+            PacienteController.incluir(p3);
+        } catch (NomeInvalidoException e) {
+            System.out.println("[ERROR] - PACIENTE" + e.getMessage());
+        }
+
+        try {
+            Paciente p4 = new Paciente(null,"999998877",6);
+            PacienteController.incluir(p4);
+        } catch (NomeInvalidoException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+
+        try {
+           Paciente p5 = new Paciente("","999998877",6);
+           PacienteController.incluir(p5);
+        } catch (NomeInvalidoException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
     }
 }

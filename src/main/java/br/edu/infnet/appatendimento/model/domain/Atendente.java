@@ -1,5 +1,7 @@
 package br.edu.infnet.appatendimento.model.domain;
 
+import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
+
 public class Atendente extends Pessoa{
     private int idade;
     private String formacao;
@@ -12,7 +14,11 @@ public class Atendente extends Pessoa{
     }
 
     @Override
-    public String validaEmail() {
+    public String validaPessoa() throws IdadeAtendenteInvalidoException {
+
+        if (idade < 18) {
+            throw new IdadeAtendenteInvalidoException("Impossível preencher a idade ("+ idade +") porque o valor é menor do que 18");
+        }
         int maxIdade = idade + 10;
         String statusFormacao = formacao + " completo";
 
