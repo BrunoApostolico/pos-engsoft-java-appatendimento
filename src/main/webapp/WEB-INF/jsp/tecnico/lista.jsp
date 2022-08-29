@@ -36,7 +36,7 @@
     </div>
 </nav>
     <div class="container mt-3">
-        <h3>Cadastramento de Técnico</h3>
+        <h3>Cadastramento de Técnicos</h3>
         <table class="table table-striped">
             <thead>
                 <tr>

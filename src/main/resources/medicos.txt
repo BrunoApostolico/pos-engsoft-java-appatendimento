@@ -1,0 +1,4 @@
+Luiz;luiz@medico.com;21 99225-4433;123123123;true;false;1970;
+Regina;regina@medico.com;21 99335-8822;432124223;false;false;1975;
+Maria Jose;maria@medico.com;21 99113-3775;643543623;true;true;1980;
+Fellipe;fellipe@medico.com;21 99113-3775;643543623;true;true;2020;

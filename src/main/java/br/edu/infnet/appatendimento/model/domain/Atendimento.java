@@ -9,9 +9,11 @@ import java.time.LocalTime;
 import java.util.Set;
 
 public class Atendimento implements IPrinter {
+    private Integer id;
     private LocalDate data;
     private LocalTime hora;
-    private String local;
+    private Boolean presencial;
+    private String descricao;
     private Paciente paciente;
     private Set<Pessoa> pessoas;
 
@@ -41,15 +43,62 @@ public class Atendimento implements IPrinter {
 
     @Override
     public String toString() {
-        return data + ";" + hora + ";" + local + ";" + paciente + ";" + pessoas.size();
+        return data + ";" + hora + ";" + descricao + ";" + presencial + ";" + paciente + ";" + pessoas.size();
     }
 
-    public String getLocal() {
-        return local;
+    public Integer getId() {
+        return id;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
+    public Boolean getPresencial() {
+        return presencial;
+    }
+
+    public void setPresencial(Boolean presencial) {
+        this.presencial = presencial;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Set<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public void setPessoas(Set<Pessoa> pessoas) {
+        this.pessoas = pessoas;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

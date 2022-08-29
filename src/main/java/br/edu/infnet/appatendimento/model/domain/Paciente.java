@@ -5,6 +5,7 @@ import br.edu.infnet.appatendimento.interfaces.IPrinter;
 import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
 
 public class Paciente implements IPrinter {
+    private Integer id;
     private String nome;
     private String telefone;
     private int idade;
@@ -57,4 +58,10 @@ public class Paciente implements IPrinter {
         this.idade = idade;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public Integer getId() {
+        return id;
+    }
 }

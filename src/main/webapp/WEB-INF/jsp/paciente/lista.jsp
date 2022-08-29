@@ -36,21 +36,25 @@
     </div>
 </nav>
     <div class="container mt-3">
-        <h3>Classe: Paciente</h3>
+        <h3>Cadastramento de Pacientes</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Idade</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             <c:forEach var="pa" items="${listagem}">
             <tr>
+                <td>${pa.id}</td>
                 <td>${pa.nome}</td>
                 <td>${pa.telefone}</td>
                 <td>${pa.idade}</td>
+                <td><a href="/paciente/${pa.id}/excluir">excluir</a></td>
             </tr>
             </c:forEach>
             </tbody>

@@ -66,4 +66,5 @@ public abstract class Pessoa implements IPrinter {
     public void setId(Integer id) {
         this.id = id;
     }
+
 }

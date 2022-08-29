@@ -24,6 +24,7 @@ public class AtendenteController {
         return mapaAtendente.values();
     }
 
+
     public static void excluir(Integer id){
         mapaAtendente.remove(id);
     }

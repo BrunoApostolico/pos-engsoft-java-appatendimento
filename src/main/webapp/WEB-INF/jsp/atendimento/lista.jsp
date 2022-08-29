@@ -40,17 +40,26 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
                     <th>Data</th>
                     <th>Hora</th>
-                    <th>Local</th>
+                    <th>Presencial</th>
+                    <th>Paciente</th>
+                    <th>Pessoas</th>
                 </tr>
             </thead>
             <tbody>
-            <c:forEach var="at" items="listagem">
+            <c:forEach var="at" items="${listagem}">
             <tr>
+                <td>${at.id}</td>
+                <td>${at.descricao}</td>
                 <td>${at.data}</td>
                 <td>${at.hora}</td>
-                <td>${at.local}</td>
+                <td>${at.presencial}</td>
+                <td>${at.paciente.nome}</td>
+                <td>${at.pessoas.size()}</td>
+                <td><a href="/atendimento/${at.id}/excluir">excluir</a> </td>
             </tr>
             </c:forEach>
             </tbody>

@@ -1,0 +1,4 @@
+Atendimento 1;true;Bruno;993703274;36;
+Atendimento 2;true;Priscila;993638628;36;
+Atendimento 3;false;Eloah;993703274;6;
+Atendimento 4;true;Gabriel;993703274;10;

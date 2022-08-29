@@ -1,15 +1,19 @@
 package br.edu.infnet.appatendimento;
 
+import br.edu.infnet.appatendimento.controller.AtendimentoController;
 import br.edu.infnet.appatendimento.model.domain.*;
 import br.edu.infnet.appatendimento.model.exceptions.AtendimentoSemPessoaException;
 import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
 import br.edu.infnet.appatendimento.model.exceptions.PacienteNuloException;
-import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,90 +58,51 @@ public class AtendimentoTeste implements ApplicationRunner {
         t2.setSexo("Feminino");
 
         //-------------------------
-        try {
-            Set<Pessoa> listaPessoaP1 = new HashSet<Pessoa>();
-            listaPessoaP1.add(at1);
-            listaPessoaP1.add(med1);
-            listaPessoaP1.add(t1);
-            listaPessoaP1.add(t2);
-
-            Paciente paciente1 = new Paciente("Bruno","993703274",36);
-
-            Atendimento atd1 = new Atendimento(paciente1, listaPessoaP1);
-            atd1.setLocal("Local 1");
-            AppImpressao.relatorio("Inclusão do Atendimento 1!!!",atd1);
-        } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
-            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
-        }
-
-        //---------------------------
-        try {
-            Set<Pessoa> listaPessoaP2 = new HashSet<Pessoa>();
-            listaPessoaP2.add(at1);
-            listaPessoaP2.add(t1);
-
-            Paciente paciente2 = new Paciente("Priscila","993638628",36);
-
-            Atendimento atd2 = new Atendimento(paciente2, listaPessoaP2);
-            atd2.setLocal("Local 2");
-            AppImpressao.relatorio("Inclusão do Atendimento 2!!!",atd2);
-        } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
-            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
-        }
-
-        //---------------------------
-        try {
-            Set<Pessoa> listaPessoaP3 = new HashSet<Pessoa>();
-            listaPessoaP3.add(at1);
-            listaPessoaP3.add(med1);
-            listaPessoaP3.add(t2);
-
-            Paciente paciente3 = new Paciente("Eloah","999998877",6);
-
-            Atendimento atd3 = new Atendimento(paciente3, listaPessoaP3);
-            atd3.setLocal("Local 3");
-            AppImpressao.relatorio("Inclusão do Atendimento 3!!!",atd3);
-        } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
-            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
-        }
+        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        String arq = "atendimentos.txt";
 
         try {
-            Set<Pessoa> listaPessoaP4 = new HashSet<Pessoa>();
-            listaPessoaP4.add(at1);
-            listaPessoaP4.add(med1);
-            listaPessoaP4.add(t2);
+            try {
+                FileReader fileReader = new FileReader(dir+arq);
+                BufferedReader leitura = new BufferedReader(fileReader);
 
-            Paciente paciente4 = new Paciente("Eloah","999998877",6);
+                String linha = leitura.readLine();
 
-            Atendimento atd4 = new Atendimento(null, listaPessoaP4);
-            atd4.setLocal("Local 4");
-            AppImpressao.relatorio("Inclusão do Atendimento 4!!!",atd4);
-        } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
-            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
-        }
+                while (linha != null){
 
-        try {
-            Set<Pessoa> listaPessoaP5 = new HashSet<Pessoa>();
+                    try {
 
-            Paciente paciente5 = new Paciente("Eloah","999998877",6);
+                        String[] campos = linha.split(";");
 
-            Atendimento atd5 = new Atendimento(paciente5, listaPessoaP5);
-            atd5.setLocal("Local 5");
-            AppImpressao.relatorio("Inclusão do Atendimento 5!!!",atd5);
-        } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
-            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
-        }
+                        Set<Pessoa> listaPessoaP1 = new HashSet<Pessoa>();
+                        listaPessoaP1.add(at1);
+                        listaPessoaP1.add(med1);
+                        listaPessoaP1.add(t1);
+                        listaPessoaP1.add(t2);
 
-        try {
-            Set<Pessoa> listaPessoaP6 = null;
+                        Paciente paciente1 = new Paciente(campos[2],campos[3],Integer.parseInt(campos[4]));
 
-            Paciente paciente6 = new Paciente("Eloah","999998877",6);
+                        Atendimento atd1 = new Atendimento(paciente1, listaPessoaP1);
+                        atd1.setDescricao(campos[0]);
+                        atd1.setPresencial(Boolean.valueOf(campos[1]));
+                        AtendimentoController.incluir(atd1);
+                    } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
+                        System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                    }
 
-            Atendimento atd6 = new Atendimento(paciente6, listaPessoaP6);
-            atd6.setLocal("Local 6");
-            AppImpressao.relatorio("Inclusão do Atendimento 6!!!",atd6);
-        } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
-            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                    linha = leitura.readLine();
+                }
+
+                leitura.close();
+                fileReader.close();
+
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERRO] O arquivo não existe!!!");
+            } catch (IOException e) {
+                System.out.println("[ERRO] Problema no fechamento do arquivo!!!");
+            }
+        } finally {
+            System.out.println("Terminou!!");
         }
     }
 }

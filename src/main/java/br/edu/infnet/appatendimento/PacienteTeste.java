@@ -3,11 +3,15 @@ package br.edu.infnet.appatendimento;
 import br.edu.infnet.appatendimento.controller.PacienteController;
 import br.edu.infnet.appatendimento.model.domain.Paciente;
 import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
-import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 @Component
 @Order(2)
@@ -17,40 +21,38 @@ public class PacienteTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         System.out.println("\n####Paciente");
 
+        //-------------------------
+        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        String arq = "pacientes.txt";
 
         try {
-            Paciente p1 = new Paciente("Bruno","993703274",36);
-            PacienteController.incluir(p1);
-        } catch (NomeInvalidoException e) {
-            System.out.println("[ERROR] - PACIENTE" + e.getMessage());
-        }
+            try {
+                FileReader fileReader = new FileReader(dir+arq);
+                BufferedReader leitura = new BufferedReader(fileReader);
 
-        try {
-            Paciente p2 = new Paciente("Priscila","993638628",36);
-            PacienteController.incluir(p2);
-        } catch (NomeInvalidoException e) {
-            System.out.println("[ERROR] - PACIENTE" + e.getMessage());
-        }
+                String linha = leitura.readLine();
 
-        try {
-            Paciente p3 = new Paciente("Eloah","999998877",6);
-            PacienteController.incluir(p3);
-        } catch (NomeInvalidoException e) {
-            System.out.println("[ERROR] - PACIENTE" + e.getMessage());
-        }
+                while (linha != null){
+                    String[] campos = linha.split(";");
+                    try {
+                        Paciente p1 = new Paciente(campos[0], campos[1], Integer.parseInt(campos[2]));
+                        PacienteController.incluir(p1);
+                    } catch (NomeInvalidoException e) {
+                        System.out.println("[ERROR] - PACIENTE" + e.getMessage());
+                    }
+                    linha = leitura.readLine();
+                }
 
-        try {
-            Paciente p4 = new Paciente(null,"999998877",6);
-            PacienteController.incluir(p4);
-        } catch (NomeInvalidoException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
+                leitura.close();
+                fileReader.close();
 
-        try {
-           Paciente p5 = new Paciente("","999998877",6);
-           PacienteController.incluir(p5);
-        } catch (NomeInvalidoException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERRO] O arquivo não existe!!!");
+            } catch (IOException e) {
+                System.out.println("[ERRO] Problema no fechamento do arquivo!!!");
+            }
+        } finally {
+            System.out.println("Terminou!!");
         }
     }
 }

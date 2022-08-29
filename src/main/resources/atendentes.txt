@@ -1,0 +1,4 @@
+Karen;2499885577;karen@atendimento.com;19;Ensino Médio;Dia;
+Hellen;2499778866;hellen@atendimento.com;23;Ensino Superior;Noite;
+Kaian;2499224455;kaian@atendimento.com;21;Ensino Fundamental;Dia;
+Gabriel;21993703274;gabriel@atendimento.com;18;Ensino Fundamental;Noite;

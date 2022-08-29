@@ -36,7 +36,7 @@
     </div>
 </nav>
     <div class="container mt-3">
-        <h3>Cadastramento de Medico</h3>
+        <h3>Cadastramento de Médicos</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -47,6 +47,7 @@
                     <th>CRM</th>
                     <th>Especialista</th>
                     <th>Pediatra</th>
+                    <th>Ano de Formação</th>
                     <th></th>
                 </tr>
             </thead>
@@ -60,6 +61,7 @@
                 <td>${m.crm}</td>
                 <td>${m.especialista}</td>
                 <td>${m.pediatra}</td>
+                <td>${m.anoFormacao}</td>
                 <td><a href="/medico/${m.id}/excluir">excluir</a></td>
             </tr>
             </c:forEach>

@@ -36,21 +36,23 @@
     </div>
 </nav>
     <div class="container mt-3">
-        <h3>Classe: Pessoa</h3>
+        <h3>Cadastramento de Pessoas</h3>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Atributo</th>
-                <th>Tipo</th>
-                <th>Descrição</th>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="p" items="${listagem}">
             <tr>
-                <td>${p.atributo}</td>
-                <td>${p.tipo}</td>
-                <td>${p.descricao}</td>
+                <td>${p.id}</td>
+                <td>${p.nome}</td>
+                <td>${p.email}</td>
+                <td>${p.telefone}</td>
             </tr>
             </c:forEach>
             </tbody>

@@ -1,0 +1,5 @@
+Priscila;priscila@tecnica.com;21993638628;123123123;true;Feminino;1.51;
+Vanessa;vanessa@tecnica.com;21991122443;123432321;true;Feminino;1.61;
+Leandro;leandro@tecnica.com;21991188554;432432432;false;Masculino;1.71;
+Eloah;eloah@tecnica.com;21991188554;432432432;false;Feminino;1.31;
+Kelly;kelly@tecnica.com;21991188554;432432432;false;Feminino;1.65;
