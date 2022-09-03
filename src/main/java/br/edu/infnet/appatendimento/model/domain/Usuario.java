@@ -6,7 +6,7 @@ import br.edu.infnet.appatendimento.interfaces.IPrinter;
 public class Usuario implements IPrinter {
     private String nome;
     private String email;
-    private int senha;
+    private String senha;
 
 
     @Override
@@ -36,11 +36,11 @@ public class Usuario implements IPrinter {
         this.email = email;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 }

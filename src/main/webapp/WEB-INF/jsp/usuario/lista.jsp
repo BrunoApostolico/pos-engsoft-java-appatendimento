@@ -8,33 +8,8 @@
     <title>AppAtendimento</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-    <div class="container-fluid">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/atendente/lista">Atendente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/medico/lista">Médico</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/tecnico/lista">Técnico</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pessoa/lista">Pessoa</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/paciente/lista">Paciente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/atendimento/lista">Atendimento</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<c:import url="/WEB-INF/jsp/menu.jsp"/>
+
     <div class="container mt-3">
         <h3>Cadastramento de Usuários</h3>
         <table class="table table-striped">
@@ -43,14 +18,16 @@
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Senha</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-            <c:forEach var="a" items="${listagem}">
+            <c:forEach var="u" items="${listagem}">
             <tr>
-                <td>${a.nome}</td>
-                <td>${a.email}</td>
-                <td>${a.senha}</td>
+                <td>${u.nome}</td>
+                <td>${u.email}</td>
+                <td>${u.senha}</td>
+                <td><a href="/usuario/${u.email}/excluir">excluir</a></td>
             </tr>
             </c:forEach>
             </tbody>

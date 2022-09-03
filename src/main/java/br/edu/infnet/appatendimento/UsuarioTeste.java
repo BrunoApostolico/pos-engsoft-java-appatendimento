@@ -15,7 +15,7 @@ public class UsuarioTeste implements ApplicationRunner {
         Usuario usuario = new Usuario();
         usuario.setEmail("admin@admin.com");
         usuario.setNome("Administrador");
-        usuario.setSenha(123);
+        usuario.setSenha("123");
 
         UsuarioController.incluir(usuario);
 

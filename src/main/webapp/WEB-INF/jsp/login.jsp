@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="pt-BR">
@@ -7,46 +8,9 @@
     <title>AppAtendimento</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-    <div class="container-fluid">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/atendente/lista">Atendente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/medico/lista">Médico</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/tecnico/lista">Técnico</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/pessoa/lista">Pessoa</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/paciente/lista">Paciente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/atendimento/lista">Atendimento</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="">Signup</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<c:import url="/WEB-INF/jsp/menu.jsp"/>
 <div class="container mt-3">
-    <h2>Stacked form</h2>
+    <h2>Login</h2>
     <form action="" method="post">
         <div class="mb-3 mt-3">
             <label>Email:</label>
@@ -57,7 +21,7 @@
             <label>Password:</label>
             <input type="password" class="form-control"  placeholder="Entre com a senha" name="senha">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Entrar</button>
     </form>
 </div>
 </body>
