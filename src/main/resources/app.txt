@@ -1,0 +1,29 @@
+P;AppAtendimento;Projeto de Gestão de Atendimento
+C;Usuario
+A;nome;String;O nome do usuário
+A;email;String;O e-mail do usuário
+A;senha;String;A senha do usuário
+C;Atendimento
+A;data;LocalDate;Data do atendimento
+A;hora;LocalTime;Horário do atendimento
+A;presencial;Boolean;Indica se o atendimento é presencial ou online
+C;Paciente
+A;nome;String;Nome do(a) paciente
+A;telefone;String;Telefone do(a) paciente
+A;idade;int;Idade do(a) paciente
+C;Pessoa
+A;nome;String;O nome da pessoa
+A;email;String;O e-mail da pessoa
+A;telefone;String;O telefone da pessoa
+C;Atendente
+A;idade;int;Idade do(a) atendente
+A;formação;String;Formação do(a) atendente
+A;turno;String;Turno do(a) atendente
+C;Medico
+A;CRM;String;CRM do médico
+A;especialista;Boolean;Indica se é especialista
+A;pediatra;Boolean;Indica se é pediatra
+C;Tecnico
+A;Coren;String;Coren do Técnico(a)
+A;diarista;Boolean;Indica se é diarista
+A;sexo;String;Sexo do Técnico(a)

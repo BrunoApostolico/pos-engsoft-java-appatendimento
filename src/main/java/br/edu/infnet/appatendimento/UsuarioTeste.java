@@ -1,13 +1,6 @@
 package br.edu.infnet.appatendimento;
 
-import br.edu.infnet.appatendimento.controller.AtendimentoController;
-import br.edu.infnet.appatendimento.model.domain.Atendimento;
-import br.edu.infnet.appatendimento.model.domain.Paciente;
-import br.edu.infnet.appatendimento.model.domain.Pessoa;
 import br.edu.infnet.appatendimento.model.domain.Usuario;
-import br.edu.infnet.appatendimento.model.exceptions.AtendimentoSemPessoaException;
-import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
-import br.edu.infnet.appatendimento.model.exceptions.PacienteNuloException;
 import br.edu.infnet.appatendimento.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -18,8 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class UsuarioTeste implements ApplicationRunner {
