@@ -3,6 +3,8 @@ package br.edu.infnet.appatendimento;
 import br.edu.infnet.appatendimento.controller.PacienteController;
 import br.edu.infnet.appatendimento.model.domain.Paciente;
 import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
+import br.edu.infnet.appatendimento.model.service.PacienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -16,6 +18,9 @@ import java.io.IOException;
 @Component
 @Order(2)
 public class PacienteTeste implements ApplicationRunner {
+
+    @Autowired
+    private PacienteService pacienteService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -36,7 +41,7 @@ public class PacienteTeste implements ApplicationRunner {
                     String[] campos = linha.split(";");
                     try {
                         Paciente p1 = new Paciente(campos[0], campos[1], Integer.parseInt(campos[2]));
-                        PacienteController.incluir(p1);
+                        pacienteService.incluir(p1);
                     } catch (NomeInvalidoException e) {
                         System.out.println("[ERROR] - PACIENTE" + e.getMessage());
                     }

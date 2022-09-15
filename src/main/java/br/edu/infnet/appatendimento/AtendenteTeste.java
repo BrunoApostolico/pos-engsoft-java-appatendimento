@@ -3,6 +3,8 @@ package br.edu.infnet.appatendimento;
 import br.edu.infnet.appatendimento.controller.AtendenteController;
 import br.edu.infnet.appatendimento.model.domain.Atendente;
 import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
+import br.edu.infnet.appatendimento.model.service.AtendenteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -16,6 +18,9 @@ import java.io.IOException;
 @Component
 @Order(3)
 public class AtendenteTeste implements ApplicationRunner {
+
+    @Autowired
+    private AtendenteService atendenteService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -46,7 +51,7 @@ public class AtendenteTeste implements ApplicationRunner {
                         at1.setFormacao(campos[4]);
                         at1.setTurno(campos[5]);
                         System.out.println("Validar Atendente: " + at1.validaPessoa());
-                        AtendenteController.incluir(at1);
+                        atendenteService.incluir(at1);
                     } catch (IdadeAtendenteInvalidoException e) {
                         System.out.println("[ERROR ATENDENTE] " + e.getMessage());
                     }

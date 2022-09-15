@@ -3,6 +3,8 @@ package br.edu.infnet.appatendimento;
 import br.edu.infnet.appatendimento.controller.MedicoController;
 import br.edu.infnet.appatendimento.model.domain.Medico;
 import br.edu.infnet.appatendimento.model.exceptions.FaltaExperienciaException;
+import br.edu.infnet.appatendimento.model.service.MedicoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -16,6 +18,9 @@ import java.io.IOException;
 @Component
 @Order(4)
 public class MedicoTeste implements ApplicationRunner {
+
+    @Autowired
+    private MedicoService medicoService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -45,7 +50,7 @@ public class MedicoTeste implements ApplicationRunner {
                         med1.setPediatra(Boolean.parseBoolean(campos[5]));
                         med1.setAnoFormacao(Integer.parseInt(campos[6]));
                         System.out.println("Verifica tempo de formação: " + med1.validaPessoa());
-                        MedicoController.incluir(med1);
+                        medicoService.incluir(med1);
                     } catch (FaltaExperienciaException e) {
                         System.out.println("[ERROR - MEDICO] "+ e.getMessage());
                     }

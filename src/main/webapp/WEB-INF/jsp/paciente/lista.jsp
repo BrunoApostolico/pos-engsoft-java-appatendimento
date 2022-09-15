@@ -11,6 +11,9 @@
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
     <div class="container mt-3">
         <h3>Cadastramento de Pacientes</h3>
+
+        <a href="/paciente" class="btn btn-sm btn-outline-primary">Novo</a>
+
         <table class="table table-striped">
             <thead>
                 <tr>
