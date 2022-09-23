@@ -28,7 +28,7 @@ public class MedicoTeste implements ApplicationRunner {
 
         //-------------------------
         String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
-        String arq = "medicos.txt";
+        String arq = "pessoas.txt";
 
         try {
             try {
@@ -40,19 +40,22 @@ public class MedicoTeste implements ApplicationRunner {
                 while (linha != null){
                     String[] campos = linha.split(";");
 
-                    try {
-                        Medico med1 = new Medico();
-                        med1.setNome(campos[0]);
-                        med1.setEmail(campos[1]);
-                        med1.setTelefone(campos[2]);
-                        med1.setCrm(campos[3]);
-                        med1.setEspecialista(Boolean.parseBoolean(campos[4]));
-                        med1.setPediatra(Boolean.parseBoolean(campos[5]));
-                        med1.setAnoFormacao(Integer.parseInt(campos[6]));
-                        System.out.println("Verifica tempo de formação: " + med1.validaPessoa());
-                        medicoService.incluir(med1);
-                    } catch (FaltaExperienciaException e) {
-                        System.out.println("[ERROR - MEDICO] "+ e.getMessage());
+                    if("M".equalsIgnoreCase(campos[0])) {
+
+                        try {
+                            Medico med1 = new Medico();
+                            med1.setNome(campos[1]);
+                            med1.setTelefone(campos[2]);
+                            med1.setEmail(campos[3]);
+                            med1.setCrm(campos[4]);
+                            med1.setEspecialista(Boolean.parseBoolean(campos[5]));
+                            med1.setPediatra(Boolean.parseBoolean(campos[6]));
+                            med1.setAnoFormacao(Integer.parseInt(campos[7]));
+                            System.out.println("Verifica tempo de formação: " + med1.validaPessoa());
+                            medicoService.incluir(med1);
+                        } catch (FaltaExperienciaException e) {
+                            System.out.println("[ERROR - MEDICO] " + e.getMessage());
+                        }
                     }
                     linha = leitura.readLine();
                 }

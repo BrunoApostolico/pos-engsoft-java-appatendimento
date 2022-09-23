@@ -10,7 +10,9 @@
 <body>
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
     <div class="container mt-3">
-        <h3>Gerenciamento dos Atendimentos</h3>
+        <h3>Cadastramento dos Atendimentos</h3>
+
+        <a href="/atendimento" class="btn btn-sm btn-outline-primary">Novo</a>
         <table class="table table-striped">
             <thead>
                 <tr>

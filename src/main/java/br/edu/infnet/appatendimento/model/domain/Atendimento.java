@@ -22,12 +22,12 @@ public class Atendimento implements IPrinter {
         if(paciente == null){
             throw new PacienteNuloException("Impossivel criar um Atendimento sem um paciente!");
         }
-        if(pessoas == null){
-            throw new AtendimentoSemPessoaException("Impossível criar um Atendimento sem uma listagem de pessoas associadas");
-        }
-        if(pessoas.size() < 1){
-            throw new AtendimentoSemPessoaException("Impossível criar um Atendimento sem pessoas");
-        }
+//        if(pessoas == null){
+//            throw new AtendimentoSemPessoaException("Impossível criar um Atendimento sem uma listagem de pessoas associadas");
+//        }
+//        if(pessoas.size() < 1){
+//            throw new AtendimentoSemPessoaException("Impossível criar um Atendimento sem pessoas");
+//        }
 
         this.data = LocalDate.now();
         this.hora = LocalTime.now();

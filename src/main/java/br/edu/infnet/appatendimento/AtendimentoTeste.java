@@ -3,8 +3,11 @@ package br.edu.infnet.appatendimento;
 import br.edu.infnet.appatendimento.controller.AtendimentoController;
 import br.edu.infnet.appatendimento.model.domain.*;
 import br.edu.infnet.appatendimento.model.exceptions.AtendimentoSemPessoaException;
+import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
 import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
 import br.edu.infnet.appatendimento.model.exceptions.PacienteNuloException;
+import br.edu.infnet.appatendimento.model.service.AtendimentoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -14,48 +17,22 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
 @Order(1)
 public class AtendimentoTeste implements ApplicationRunner {
 
+    @Autowired
+    private AtendimentoService atendimentoService;
+
     @Override
     public void run(ApplicationArguments args) {
         System.out.println("\n####Atendimento");
 
-        Atendente at1 = new Atendente();
-        at1.setNome("Karen");
-        at1.setTelefone("2499885577");
-        at1.setEmail("karen@atendimento.com");
-        at1.setIdade(19);
-        at1.setFormacao("Ensino Médio");
-        at1.setTurno("Dia");
-
-        Medico med1 = new Medico();
-        med1.setNome("Luiz");
-        med1.setEmail("luiz@medico.com");
-        med1.setTelefone("21 99225-4433");
-        med1.setCrm("123123123");
-        med1.setEspecialista(true);
-        med1.setPediatra(false);
-
-        Tecnico t1 = new Tecnico();
-        t1.setNome("Priscila");
-        t1.setEmail("priscila@tecnica.com");
-        t1.setTelefone("21993638628");
-        t1.setCoren("123123123");
-        t1.setDiarista(true);
-        t1.setSexo("Feminino");
-
-        Tecnico t2 = new Tecnico();
-        t2.setNome("Vanessa");
-        t2.setEmail("vanessa@tecnica.com");
-        t2.setTelefone("21993638628");
-        t2.setCoren("123123123");
-        t2.setDiarista(false);
-        t2.setSexo("Feminino");
 
         //-------------------------
         String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
@@ -66,31 +43,74 @@ public class AtendimentoTeste implements ApplicationRunner {
                 FileReader fileReader = new FileReader(dir+arq);
                 BufferedReader leitura = new BufferedReader(fileReader);
 
+                Set<Pessoa> pessoas = null;
+                List<Atendimento> atendimentos = new ArrayList<Atendimento>();
+
                 String linha = leitura.readLine();
 
                 while (linha != null){
 
-                    try {
+                    String[] campos = linha.split(";");
 
-                        String[] campos = linha.split(";");
+                    switch (campos[0].toUpperCase()) {
+                        case "AT":
+                            try {
+                                pessoas = new HashSet<Pessoa>();
 
-                        Set<Pessoa> listaPessoaP1 = new HashSet<Pessoa>();
-                        listaPessoaP1.add(at1);
-                        listaPessoaP1.add(med1);
-                        listaPessoaP1.add(t1);
-                        listaPessoaP1.add(t2);
+                                Paciente paciente1 = new Paciente(campos[3],campos[4],Integer.parseInt(campos[5]));
 
-                        Paciente paciente1 = new Paciente(campos[2],campos[3],Integer.parseInt(campos[4]));
+                                Atendimento atendimento = new Atendimento(paciente1, pessoas);
+                                atendimento.setDescricao(campos[1]);
+                                atendimento.setPresencial(Boolean.valueOf(campos[2]));
 
-                        Atendimento atd1 = new Atendimento(paciente1, listaPessoaP1);
-                        atd1.setDescricao(campos[0]);
-                        atd1.setPresencial(Boolean.valueOf(campos[1]));
-                        AtendimentoController.incluir(atd1);
-                    } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
-                        System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                                atendimentos.add(atendimento);
+
+                            } catch (NomeInvalidoException | PacienteNuloException | AtendimentoSemPessoaException e) {
+                                System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                            }
+                            break;
+
+                        case "A":
+                                Atendente atendente = new Atendente();
+                                atendente.setNome(campos[1]);
+                                atendente.setTelefone(campos[2]);
+                                atendente.setEmail(campos[3]);
+                                atendente.setIdade(Integer.parseInt(campos[4]));
+                                atendente.setFormacao(campos[5]);
+                                atendente.setTurno(campos[6]);
+
+                                pessoas.add(atendente);
+
+                            break;
+
+                        case "M":
+                            Medico medico = new Medico();
+                            medico.setNome(campos[1]);
+                            medico.setTelefone(campos[2]);
+                            medico.setEmail(campos[3]);
+                            medico.setCrm(campos[4]);
+                            medico.setEspecialista(Boolean.parseBoolean(campos[5]));
+                            medico.setPediatra(Boolean.parseBoolean(campos[6]));
+                            medico.setAnoFormacao(Integer.parseInt(campos[7]));
+
+                            pessoas.add(medico);
+
+                            break;
+
+                        case "T":
+                            break;
+
+                        default:
+                            break;
                     }
 
                     linha = leitura.readLine();
+                }
+                for(Atendimento atd : atendimentos){
+                    atendimentoService.incluir(atd);
+                    System.out.println(">>>>>>>>>" + atd.getId());
+                    System.out.println(">>>>>>>" + atd.getPaciente().getNome());
+                    System.out.println(">>>>>" + atd.getPessoas().size());
                 }
 
                 leitura.close();

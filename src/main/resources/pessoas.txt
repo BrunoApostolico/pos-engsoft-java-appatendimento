@@ -1,0 +1,8 @@
+A;Karen;2499885577;karen@atendimento.com;19;Ensino Médio;Dia;
+A;Hellen;2499778866;hellen@atendimento.com;23;Ensino Superior;Noite;
+A;Kaian;2499224455;kaian@atendimento.com;21;Ensino Fundamental;Dia;
+A;Gabriel;21993703274;gabriel@atendimento.com;18;Ensino Fundamental;Noite;
+M;Luiz;21 99225-4433;luiz@medico.com;123123123;true;false;1970;
+M;Regina;21 99335-8822;regina@medico.com;432124223;false;false;1975;
+M;Maria Jose;21 99113-3775;maria@medico.com;643543623;true;true;1980;
+M;Fellipe;21 99113-3775;fellipe@medico.com;643543623;true;true;2020;

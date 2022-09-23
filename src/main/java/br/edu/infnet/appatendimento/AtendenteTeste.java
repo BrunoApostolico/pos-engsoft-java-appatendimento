@@ -28,7 +28,7 @@ public class AtendenteTeste implements ApplicationRunner {
 
         //-------------------------
         String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
-        String arq = "atendentes.txt";
+        String arq = "pessoas.txt";
 
         try {
             try {
@@ -39,22 +39,25 @@ public class AtendenteTeste implements ApplicationRunner {
 
                 while (linha != null){
 
-                    try {
+                    String[] campos = linha.split(";");
 
-                        String[] campos = linha.split(";");
+                    if("A".equalsIgnoreCase(campos[0])){
+                        try {
 
-                        Atendente at1 = new Atendente();
-                        at1.setNome(campos[0]);
-                        at1.setTelefone(campos[1]);
-                        at1.setEmail(campos[2]);
-                        at1.setIdade(Integer.parseInt(campos[3]));
-                        at1.setFormacao(campos[4]);
-                        at1.setTurno(campos[5]);
-                        System.out.println("Validar Atendente: " + at1.validaPessoa());
-                        atendenteService.incluir(at1);
-                    } catch (IdadeAtendenteInvalidoException e) {
-                        System.out.println("[ERROR ATENDENTE] " + e.getMessage());
+                            Atendente at1 = new Atendente();
+                            at1.setNome(campos[1]);
+                            at1.setTelefone(campos[2]);
+                            at1.setEmail(campos[3]);
+                            at1.setIdade(Integer.parseInt(campos[4]));
+                            at1.setFormacao(campos[5]);
+                            at1.setTurno(campos[6]);
+                            System.out.println("Validar Atendente: " + at1.validaPessoa());
+                            atendenteService.incluir(at1);
+                        } catch (IdadeAtendenteInvalidoException e) {
+                            System.out.println("[ERROR ATENDENTE] " + e.getMessage());
+                        }
                     }
+
                     linha = leitura.readLine();
                 }
 

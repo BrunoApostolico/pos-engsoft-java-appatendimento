@@ -4,11 +4,22 @@ package br.edu.infnet.appatendimento.model.domain;
 import br.edu.infnet.appatendimento.interfaces.IPrinter;
 import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "TPaciente")
 public class Paciente implements IPrinter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String telefone;
     private int idade;
+
+    public Paciente() {
+
+    }
 
     public Paciente(String nome, String telefone, int idade) throws NomeInvalidoException {
 
@@ -16,7 +27,7 @@ public class Paciente implements IPrinter {
             throw new NomeInvalidoException("Não é possível aceitar nome nulo");
         }
         if(nome.isEmpty()) {
-            throw new NomeInvalidoException("Não é poss´vel aceitar nome sem preenchimentoPacienteNuloException");
+            throw new NomeInvalidoException("Não é possível aceitar nome sem preenchimentoPacienteNuloException");
         }
 
         this.nome = nome;
