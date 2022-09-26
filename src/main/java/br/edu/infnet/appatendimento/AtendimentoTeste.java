@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-@Order(1)
+@Order(6)
 public class AtendimentoTeste implements ApplicationRunner {
 
     @Autowired

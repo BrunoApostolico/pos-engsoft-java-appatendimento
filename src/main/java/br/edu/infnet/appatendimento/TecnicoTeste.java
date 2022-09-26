@@ -22,7 +22,7 @@ public class TecnicoTeste implements ApplicationRunner {
         System.out.println("\n####Tecnico");
 
         //-------------------------
-        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        String dir = "d:/Dev/pos-live/appatendimento/src/main/resources/";
         String arq = "tecnicos.txt";
 
         try {

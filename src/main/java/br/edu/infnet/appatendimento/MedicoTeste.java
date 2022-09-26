@@ -27,7 +27,7 @@ public class MedicoTeste implements ApplicationRunner {
         System.out.println("\n####Medico");
 
         //-------------------------
-        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        String dir = "d:/Dev/pos-live/appatendimento/src/main/resources/";
         String arq = "pessoas.txt";
 
         try {

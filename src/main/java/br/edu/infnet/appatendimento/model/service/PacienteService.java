@@ -1,31 +1,35 @@
 package br.edu.infnet.appatendimento.model.service;
 
 import br.edu.infnet.appatendimento.model.domain.Paciente;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
+import br.edu.infnet.appatendimento.model.repository.PacienteRepository;
 import br.edu.infnet.appatendimento.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class PacienteService {
-    private static Map<Integer, Paciente> mapaPaciente = new HashMap<Integer, Paciente>();
 
-    private static Integer id=1;
+    @Autowired
+    private PacienteRepository pacienteRepository;
 
-    public void incluir(Paciente paciente){
-        paciente.setId(id++);
-        mapaPaciente.put(paciente.getId(), paciente);
+    public void incluir(Paciente paciente) {
+        pacienteRepository.save(paciente);
 
         AppImpressao.relatorio("Inclusão do(a) paciente " + paciente.getNome() + " realizada com sucesso!!!", paciente);
     }
 
-    public Collection<Paciente> obterLista(){
-        return mapaPaciente.values();
+    public Collection<Paciente> obterLista() {
+        return (Collection<Paciente>) pacienteRepository.findAll();
     }
 
-    public void excluir(Integer id){
-        mapaPaciente.remove(id);
+    public Collection<Paciente> obterLista(Usuario usuario) {
+        return pacienteRepository.obterLista(usuario.getId());
+    }
+
+    public void excluir(Integer id) {
+        pacienteRepository.deleteById(id);
     }
 }

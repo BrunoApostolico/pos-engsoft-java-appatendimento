@@ -3,10 +3,22 @@ package br.edu.infnet.appatendimento.model.domain;
 
 import br.edu.infnet.appatendimento.interfaces.IPrinter;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "TUsuario")
 public class Usuario implements IPrinter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
     private String email;
     private String senha;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Paciente> pacientes;
 
 
     @Override
@@ -42,5 +54,21 @@ public class Usuario implements IPrinter {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 }

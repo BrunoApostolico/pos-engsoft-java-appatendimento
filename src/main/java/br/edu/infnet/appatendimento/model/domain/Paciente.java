@@ -16,6 +16,9 @@ public class Paciente implements IPrinter {
     private String nome;
     private String telefone;
     private int idade;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public Paciente() {
 
@@ -74,5 +77,13 @@ public class Paciente implements IPrinter {
     }
     public Integer getId() {
         return id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

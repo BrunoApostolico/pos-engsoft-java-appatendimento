@@ -30,7 +30,7 @@ public class AppTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         //-------------------------
-        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        String dir = "d:/Dev/pos-live/appatendimento/src/main/resources/";
         String arq = "app.txt";
 
         try {

@@ -2,6 +2,7 @@ package br.edu.infnet.appatendimento;
 
 import br.edu.infnet.appatendimento.controller.PacienteController;
 import br.edu.infnet.appatendimento.model.domain.Paciente;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
 import br.edu.infnet.appatendimento.model.exceptions.NomeInvalidoException;
 import br.edu.infnet.appatendimento.model.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,11 @@ public class PacienteTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         System.out.println("\n####Paciente");
 
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         //-------------------------
-        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        String dir = "d:/Dev/pos-live/appatendimento/src/main/resources/";
         String arq = "pacientes.txt";
 
         try {
@@ -40,8 +44,10 @@ public class PacienteTeste implements ApplicationRunner {
                 while (linha != null){
                     String[] campos = linha.split(";");
                     try {
-                        Paciente p1 = new Paciente(campos[0], campos[1], Integer.parseInt(campos[2]));
-                        pacienteService.incluir(p1);
+                        Paciente paciente = new Paciente(campos[0], campos[1], Integer.parseInt(campos[2]));
+                        paciente.setUsuario(usuario);
+
+                        pacienteService.incluir(paciente);
                     } catch (NomeInvalidoException e) {
                         System.out.println("[ERROR] - PACIENTE" + e.getMessage());
                     }

@@ -21,6 +21,7 @@
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Idade</th>
+                    <th>Usuário</th>
                     <th></th>
                 </tr>
             </thead>
@@ -31,6 +32,7 @@
                 <td>${pa.nome}</td>
                 <td>${pa.telefone}</td>
                 <td>${pa.idade}</td>
+                <td>${pa.usuario.email}</td>
                 <td><a href="/paciente/${pa.id}/excluir">excluir</a></td>
             </tr>
             </c:forEach>

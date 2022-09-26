@@ -5,6 +5,7 @@ import br.edu.infnet.appatendimento.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Component
+@Order(1)
 public class UsuarioTeste implements ApplicationRunner {
     @Autowired
     private UsuarioService usuarioService;
@@ -29,7 +31,7 @@ public class UsuarioTeste implements ApplicationRunner {
         usuarioService.incluir(usuario);
 
         //-------------------------
-        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        String dir = "d:/Dev/pos-live/appatendimento/src/main/resources/";
         String arq = "usuarios.txt";
 
         try {
