@@ -1,31 +1,30 @@
 package br.edu.infnet.appatendimento.model.service;
 
 import br.edu.infnet.appatendimento.model.domain.Atendente;
+import br.edu.infnet.appatendimento.model.repository.AtendenteRepository;
 import br.edu.infnet.appatendimento.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class AtendenteService {
-    private static Map<Integer, Atendente> mapaAtendente = new HashMap<Integer, Atendente>();
-    private static Integer id = 1;
+
+    @Autowired
+    private AtendenteRepository atendenteRepository;
 
     public void incluir(Atendente atendente){
-        atendente.setId(id++);
-
-        mapaAtendente.put(atendente.getId(), atendente);
+        atendenteRepository.save(atendente);
 
         AppImpressao.relatorio("Inclusão do(a) atendente " + atendente.getNome() + " realizada com sucesso!!!", atendente);
     }
+
     public Collection<Atendente> obterLista(){
-        return mapaAtendente.values();
+       return (Collection<Atendente>) atendenteRepository.findAll();
     }
 
-
     public void excluir(Integer id){
-        mapaAtendente.remove(id);
+        atendenteRepository.deleteById(id);
     }
 }

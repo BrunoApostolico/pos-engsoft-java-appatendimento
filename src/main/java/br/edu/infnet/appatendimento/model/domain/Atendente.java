@@ -2,6 +2,11 @@ package br.edu.infnet.appatendimento.model.domain;
 
 import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TAtendente")
 public class Atendente extends Pessoa{
     private int idade;
     private String formacao;

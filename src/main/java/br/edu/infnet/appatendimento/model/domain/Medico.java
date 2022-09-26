@@ -2,6 +2,11 @@ package br.edu.infnet.appatendimento.model.domain;
 
 import br.edu.infnet.appatendimento.model.exceptions.FaltaExperienciaException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TMedico")
 public class Medico extends Pessoa{
     private String crm;
     private boolean especialista;

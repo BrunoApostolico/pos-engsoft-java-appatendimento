@@ -5,10 +5,16 @@ import br.edu.infnet.appatendimento.model.exceptions.AlturaMenorException;
 import br.edu.infnet.appatendimento.model.exceptions.FaltaExperienciaException;
 import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "TPessoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pessoa implements IPrinter {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;
