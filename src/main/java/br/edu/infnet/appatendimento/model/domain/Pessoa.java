@@ -6,6 +6,7 @@ import br.edu.infnet.appatendimento.model.exceptions.FaltaExperienciaException;
 import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,11 @@ public abstract class Pessoa implements IPrinter {
     private String nome;
     private String email;
     private String telefone;
+    @ManyToMany(mappedBy = "pessoas")
+    private List<Atendimento> atendimentos;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public abstract String validaPessoa() throws IdadeAtendenteInvalidoException, FaltaExperienciaException, AlturaMenorException;
 
@@ -73,4 +79,19 @@ public abstract class Pessoa implements IPrinter {
         this.id = id;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Atendimento> getAtendimentos() {
+        return atendimentos;
+    }
+
+    public void setAtendimentos(List<Atendimento> atendimentos) {
+        this.atendimentos = atendimentos;
+    }
 }

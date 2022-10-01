@@ -10,7 +10,7 @@
 <body>
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
     <div class="container mt-3">
-        <h3>Cadastramento de Pessoas</h3>
+        <h3>Listagem de Pessoas</h3>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -18,6 +18,7 @@
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Telefone</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
                 <td>${p.nome}</td>
                 <td>${p.email}</td>
                 <td>${p.telefone}</td>
+                <td><a href="/pessoa/${p.id}/excluir">excluir</a> </td>
             </tr>
             </c:forEach>
             </tbody>

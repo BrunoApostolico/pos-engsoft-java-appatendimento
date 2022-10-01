@@ -31,7 +31,7 @@ public class PacienteTeste implements ApplicationRunner {
         usuario.setId(1);
 
         //-------------------------
-        String dir = "d:/Dev/pos-live/appatendimento/src/main/resources/";
+        final String dir = "src/main/resources/";
         String arq = "pacientes.txt";
 
         try {

@@ -1,6 +1,7 @@
 package br.edu.infnet.appatendimento.controller;
 
 import br.edu.infnet.appatendimento.model.domain.Atendente;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
 import br.edu.infnet.appatendimento.model.service.AtendenteService;
 import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
@@ -18,9 +20,9 @@ public class AtendenteController {
     private AtendenteService atendenteService;
 
     @GetMapping(value = "/atendente/lista")
-    public String telaLista(Model model){
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
 
-        model.addAttribute("listagem",atendenteService.obterLista());
+        model.addAttribute("listagem",atendenteService.obterLista(usuario));
 
         return "atendente/lista";
     }
@@ -31,7 +33,9 @@ public class AtendenteController {
     }
 
     @PostMapping(value = "/atendente/incluir")
-    public String incluir(Atendente atendente){
+    public String incluir(Atendente atendente, @SessionAttribute("User") Usuario usuario){
+
+        atendente.setUsuario(usuario);
 
         atendenteService.incluir(atendente);
 

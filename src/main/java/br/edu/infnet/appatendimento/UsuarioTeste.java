@@ -31,7 +31,7 @@ public class UsuarioTeste implements ApplicationRunner {
         usuarioService.incluir(usuario);
 
         //-------------------------
-        String dir = "d:/Dev/pos-live/appatendimento/src/main/resources/";
+        final String dir = "src/main/resources/";
         String arq = "usuarios.txt";
 
         try {

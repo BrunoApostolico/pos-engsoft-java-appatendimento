@@ -3,19 +3,36 @@ package br.edu.infnet.appatendimento.model.domain;
 import br.edu.infnet.appatendimento.interfaces.IPrinter;
 import br.edu.infnet.appatendimento.model.exceptions.AtendimentoSemPessoaException;
 import br.edu.infnet.appatendimento.model.exceptions.PacienteNuloException;
+import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
 
+@Entity
+@Table(name = "TAtendimento")
 public class Atendimento implements IPrinter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate data;
     private LocalTime hora;
     private Boolean presencial;
     private String descricao;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idPaciente")
     private Paciente paciente;
+    @ManyToMany(cascade = CascadeType.DETACH)
     private Set<Pessoa> pessoas;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    public Atendimento(){
+
+    }
 
     public Atendimento (Paciente paciente, Set<Pessoa> pessoas) throws PacienteNuloException, AtendimentoSemPessoaException {
 
@@ -100,5 +117,13 @@ public class Atendimento implements IPrinter {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

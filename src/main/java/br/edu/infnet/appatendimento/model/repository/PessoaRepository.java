@@ -1,17 +1,16 @@
 package br.edu.infnet.appatendimento.model.repository;
 
 import br.edu.infnet.appatendimento.model.domain.Atendente;
-import br.edu.infnet.appatendimento.model.domain.Paciente;
+import br.edu.infnet.appatendimento.model.domain.Pessoa;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.List;
 
 @Repository
-public interface AtendenteRepository extends CrudRepository<Atendente, Integer> {
+public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
 
-    @Query("FROM Atendente a WHERE a.usuario.id = :idUsuario")
-    Collection<Atendente> findAll(Integer idUsuario);
+    @Query("FROM Pessoa p WHERE p.usuario.id = :idUsuario")
+    Collection<Pessoa> findAll(Integer idUsuario);
 }

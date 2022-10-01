@@ -35,7 +35,7 @@ public class AtendimentoTeste implements ApplicationRunner {
 
 
         //-------------------------
-        String dir = "c:/Dev/pos-live/appatendimento/src/main/resources/";
+        final String dir = "src/main/resources/";
         String arq = "atendimentos.txt";
 
         try {

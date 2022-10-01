@@ -1,6 +1,8 @@
 package br.edu.infnet.appatendimento.model.service;
 
 import br.edu.infnet.appatendimento.model.domain.Pessoa;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
+import br.edu.infnet.appatendimento.model.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,19 +11,20 @@ import java.util.List;
 
 @Service
 public class PessoaService {
-    @Autowired
-    private AtendenteService atendenteService;
 
     @Autowired
-    private MedicoService medicoService;
+    private PessoaRepository pessoaRepository;
 
     public List<Pessoa> obterLista(){
+        return (List<Pessoa>) pessoaRepository.findAll();
+    }
 
-        List<Pessoa> pessoas = new ArrayList<Pessoa>();
-
-        pessoas.addAll(atendenteService.obterLista());
-        pessoas.addAll(medicoService.obterLista());
-
-        return pessoas;
+    public List<Pessoa> obterLista(Usuario usuario){
+        return (List<Pessoa>) pessoaRepository.findAll(usuario.getId());
+    }
+    public void excluir(Integer id){
+        pessoaRepository.deleteById(id);
     }
 }
+
+

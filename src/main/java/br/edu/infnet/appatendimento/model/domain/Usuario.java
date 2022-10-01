@@ -19,6 +19,12 @@ public class Usuario implements IPrinter {
     @OneToMany
     @JoinColumn(name = "idUsuario")
     private List<Paciente> pacientes;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Pessoa> pessoas;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Atendimento> atendimentos;
 
 
     @Override
@@ -70,5 +76,21 @@ public class Usuario implements IPrinter {
 
     public void setPacientes(List<Paciente> pacientes) {
         this.pacientes = pacientes;
+    }
+
+    public List<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public void setPessoas(List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
+    }
+
+    public List<Atendimento> getAtendimentos() {
+        return atendimentos;
+    }
+
+    public void setAtendimentos(List<Atendimento> atendimentos) {
+        this.atendimentos = atendimentos;
     }
 }
