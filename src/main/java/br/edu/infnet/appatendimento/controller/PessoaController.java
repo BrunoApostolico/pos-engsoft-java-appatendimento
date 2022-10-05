@@ -26,7 +26,7 @@ public class PessoaController {
 
         model.addAttribute("listagem",pessoaService.obterLista(usuario));
 
-        return "atendente/lista";
+        return "pessoa/lista";
     }
 
     @GetMapping(value = "/pessoa/{id}/excluir")

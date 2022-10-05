@@ -20,9 +20,9 @@
         </div>
         <div class="mb-3 mt-3">
             <label>Paciente:</label>
-            <select class="form-control" id="sel1">
+            <select name="paciente" class="form-control" id="sel1">
                 <c:forEach var="p" items="${pacientes}">
-                    <option>${p.nome}</option>
+                    <option value="${p.id}" >${p.nome}</option>
                 </c:forEach>
             </select>
         </div>
@@ -30,14 +30,10 @@
             <label>Pessoas:</label>
             <c:forEach var="ps" items="${pessoas}">
                 <div class="checkbox">
-                    <label><input type="checkbox" value="">${ps.nome}</label>
+                    <label><input type="checkbox" name="produtos" value="${ps.id}">${ps.nome}</label>
                 </div>
             </c:forEach>
-
         </div>
-
-
-
 
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
