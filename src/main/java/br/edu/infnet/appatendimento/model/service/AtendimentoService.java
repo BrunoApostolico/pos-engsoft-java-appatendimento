@@ -1,7 +1,11 @@
 package br.edu.infnet.appatendimento.model.service;
 
 import br.edu.infnet.appatendimento.model.domain.Atendimento;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
+import br.edu.infnet.appatendimento.model.repository.AtendenteRepository;
+import br.edu.infnet.appatendimento.model.repository.AtendimentoRepository;
 import br.edu.infnet.appatendimento.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,21 +14,25 @@ import java.util.Map;
 
 @Service
 public class AtendimentoService {
-    private static Map<Integer, Atendimento> mapaAtendimento = new HashMap<Integer, Atendimento>();
-    private static Integer id = 1;
+
+    @Autowired
+    private AtendimentoRepository atendimentoRepository;
 
     public void incluir(Atendimento atendimento){
-        atendimento.setId(id++);
-        mapaAtendimento.put(atendimento.getId(), atendimento);
+        atendimentoRepository.save(atendimento);
 
         AppImpressao.relatorio("Inclusão do(a) atendimento " + atendimento.getPresencial()  + " realizada com sucesso!!!", atendimento);
     }
 
     public Collection<Atendimento> obterLista(){
-        return mapaAtendimento.values();
+        return (Collection<Atendimento>) atendimentoRepository.findAll();
+    }
+
+    public Collection<Atendimento> obterLista(Usuario usuario){
+        return (Collection<Atendimento>) atendimentoRepository.findAll(usuario.getId());
     }
 
     public void excluir(Integer id){
-        mapaAtendimento.remove(id);
+        atendimentoRepository.deleteById(id);
     }
 }

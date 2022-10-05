@@ -1,5 +1,6 @@
 package br.edu.infnet.appatendimento.controller;
 
+import br.edu.infnet.appatendimento.model.domain.Usuario;
 import br.edu.infnet.appatendimento.model.service.AtendimentoService;
 import br.edu.infnet.appatendimento.model.service.PacienteService;
 import br.edu.infnet.appatendimento.model.service.PessoaService;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class AtendimentoController {
@@ -23,10 +25,10 @@ public class AtendimentoController {
     private PessoaService pessoaService;
 
     @GetMapping(value = "/atendimento")
-    public String telaCadastro(Model model){
+    public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario){
 
-        model.addAttribute("pacientes",pacienteService.obterLista());
-        model.addAttribute("pessoas",pessoaService.obterLista());
+        model.addAttribute("pacientes",pacienteService.obterLista(usuario));
+        model.addAttribute("pessoas",pessoaService.obterLista(usuario));
 
         return "atendimento/cadastro";
     }

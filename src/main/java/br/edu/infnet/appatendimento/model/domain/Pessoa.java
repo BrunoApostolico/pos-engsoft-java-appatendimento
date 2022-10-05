@@ -34,12 +34,15 @@ public abstract class Pessoa implements IPrinter {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
 //        if (getClass() != o.getClass()) return false;
-        Pessoa pessoa = (Pessoa) o;
-        return nome.equals(pessoa.nome);
+        Pessoa other = (Pessoa) obj;
+//        return nome.equals(pessoa.nome);
+        if (nome != other.nome)
+            return false;
+        return true;
     }
 
     @Override

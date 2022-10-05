@@ -33,7 +33,7 @@ public class AtendenteController {
     }
 
     @PostMapping(value = "/atendente/incluir")
-    public String incluir(Atendente atendente, @SessionAttribute("User") Usuario usuario){
+    public String incluir(Atendente atendente, @SessionAttribute("user") Usuario usuario){
 
         atendente.setUsuario(usuario);
 

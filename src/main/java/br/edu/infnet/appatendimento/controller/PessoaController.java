@@ -21,7 +21,7 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    @GetMapping(value = "/atendente/lista")
+    @GetMapping(value = "/pessoa/lista")
     public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
 
         model.addAttribute("listagem",pessoaService.obterLista(usuario));
@@ -29,9 +29,9 @@ public class PessoaController {
         return "atendente/lista";
     }
 
-    @GetMapping(value = "/atendente/{id}/excluir")
+    @GetMapping(value = "/pessoa/{id}/excluir")
     public String excluir(@PathVariable Integer id){
         pessoaService.excluir(id);
-        return "redirect:/atendente/lista";
+        return "redirect:/pessoa/lista";
     }
 }
