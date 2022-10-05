@@ -8,6 +8,7 @@
     <title>AppAtendimento</title>
 </head>
 <body>
+<c:set var="ativaBotao" value="" />
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container mt-3">
@@ -19,23 +20,35 @@
             <input type="text" class="form-control"  placeholder="Descrição" value="Primeiro Atendimento" name="descricao">
         </div>
         <div class="mb-3 mt-3">
-            <label>Paciente:</label>
-            <select name="paciente" class="form-control" id="sel1">
-                <c:forEach var="p" items="${pacientes}">
-                    <option value="${p.id}" >${p.nome}</option>
-                </c:forEach>
-            </select>
+            <c:if test="${not empty pacientes}">
+                <label>Paciente:</label>
+                <select name="paciente" class="form-control" id="sel1">
+                    <c:forEach var="p" items="${pacientes}">
+                        <option value="${p.id}">${p.nome}</option>
+                    </c:forEach>
+                </select>
+            </c:if>
+            <c:if test="${empty pacientes}">
+                <label>Não tem pacientes cadastrados!!!</label>
+                <c:set var="ativaBotao" value="disabled" />
+            </c:if>
         </div>
         <div class="mb-3 mt-3">
+            <c:if test="${not empty pessoas}">
             <label>Pessoas:</label>
             <c:forEach var="ps" items="${pessoas}">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="produtos" value="${ps.id}">${ps.nome}</label>
+                    <label><input type="checkbox" name="pessoas" value="${ps.id}">${ps.nome}</label>
                 </div>
             </c:forEach>
+            </c:if>
+            <c:if test="${empty pessoas}">
+                <label>Não existem funcionários cadastrados!!!</label>
+                <c:set var="ativaBotao" value="disabled" />
+            </c:if>
         </div>
 
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button ${ativaBotao} type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 </body>

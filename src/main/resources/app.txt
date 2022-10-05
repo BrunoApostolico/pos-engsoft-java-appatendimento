@@ -1,4 +1,4 @@
-P;AppAtendimento;Projeto de Gestão de Atendimento
+P;AppAtendimento - Desenvolvido por Bruno Apostólico;Projeto de Gestão de Atendimento - Disciplina Java Web e Injeção de Dependência
 C;Usuario
 A;nome;String;O nome do usuário
 A;email;String;O e-mail do usuário

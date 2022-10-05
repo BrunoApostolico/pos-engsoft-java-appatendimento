@@ -36,22 +36,15 @@ public class AtendimentoController {
     }
 
     @GetMapping(value = "/atendimento/lista")
-    public String telaLista(Model model){
-        model.addAttribute("listagem",atendimentoService.obterLista());
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
+        model.addAttribute("listagem",atendimentoService.obterLista(usuario));
         return "atendimento/lista";
     }
     @PostMapping(value = "/atendimento/incluir")
-    public String incluir(Atendimento atendimento){
+    public String incluir(Atendimento atendimento, @SessionAttribute("user") Usuario usuario){
+        atendimento.setUsuario(usuario);
 
-        System.out.println("Atendimento.id: " + atendimento.getId());
-        System.out.println("Atendimento.descricao: " + atendimento.getDescricao());
-        System.out.println("Atendimento.paciente.id: " + atendimento.getPaciente().getId());
-        System.out.println("Atendimento.paciente.nome: " + atendimento.getPaciente().getNome());
-        System.out.println("Atendimento.pessoas.size: " + atendimento.getPessoas().size());
-        for(Pessoa pessoa : atendimento.getPessoas()){
-            System.out.println("Atendimento.pessoa.id: " + pessoa.getId());
-            System.out.println("Atendimento.pessoa.nome: " + pessoa.getNome());
-        }
+        atendimentoService.incluir(atendimento);
 
         return "redirect:/atendimento/lista";
     }

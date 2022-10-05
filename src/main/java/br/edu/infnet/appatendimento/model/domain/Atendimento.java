@@ -30,13 +30,15 @@ public class Atendimento implements IPrinter {
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    public Atendimento(){
-
+    public Atendimento() {
+        this.data = LocalDate.now();
+        this.hora = LocalTime.now();
+        this.presencial = false;
     }
 
-    public Atendimento (Paciente paciente, Set<Pessoa> pessoas) throws PacienteNuloException, AtendimentoSemPessoaException {
-
-        if(paciente == null){
+    public Atendimento(Paciente paciente, Set<Pessoa> pessoas) throws PacienteNuloException, AtendimentoSemPessoaException {
+        this();
+        if (paciente == null) {
             throw new PacienteNuloException("Impossivel criar um Atendimento sem um paciente!");
         }
 //        if(pessoas == null){
@@ -46,8 +48,7 @@ public class Atendimento implements IPrinter {
 //            throw new AtendimentoSemPessoaException("Impossível criar um Atendimento sem pessoas");
 //        }
 
-        this.data = LocalDate.now();
-        this.hora = LocalTime.now();
+
         this.paciente = paciente;
         this.pessoas = pessoas;
     }

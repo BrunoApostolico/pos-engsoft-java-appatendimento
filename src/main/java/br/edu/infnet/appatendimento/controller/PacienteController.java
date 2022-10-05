@@ -14,10 +14,17 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
+    private String mensagem;
+    private String tipo;
+
     @GetMapping(value = "/paciente/lista")
     public String telaLista(Model model, @SessionAttribute("user") Usuario user){
 
         model.addAttribute("listagem",pacienteService.obterLista(user));
+
+        model.addAttribute("mensagem",mensagem);
+        model.addAttribute("tipo",tipo);
+
 
         return "paciente/lista";
     }
@@ -34,14 +41,23 @@ public class PacienteController {
 
         pacienteService.incluir(paciente);
 
+        mensagem = "Inclusão do Paciente " + paciente.getNome() + " realizada com sucesso!!!";
+        tipo = "alert-success";
+
         return "redirect:/paciente/lista";
     }
 
     @GetMapping(value = "/paciente/{id}/excluir")
     public String excluir(@PathVariable Integer id){
 
-        pacienteService.excluir(id);
-
+        try{
+            pacienteService.excluir(id);
+            mensagem = "Exclusão do Paciente " + id + " realizada com sucesso!!!";
+            tipo = "alert-success";
+        }catch (Exception e){
+            mensagem = "Impossível realizar a exclusão do Paciente " + id + " !!!";
+            tipo = "alert-danger";
+        }
         return "redirect:/paciente/lista";
     }
 }
