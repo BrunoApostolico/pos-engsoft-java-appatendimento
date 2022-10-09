@@ -1,7 +1,7 @@
 package br.edu.infnet.appatendimento;
 
-import br.edu.infnet.appatendimento.controller.MedicoController;
 import br.edu.infnet.appatendimento.model.domain.Medico;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
 import br.edu.infnet.appatendimento.model.exceptions.FaltaExperienciaException;
 import br.edu.infnet.appatendimento.model.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,9 @@ public class MedicoTeste implements ApplicationRunner {
         System.out.println("\n####Medico");
 
         //-------------------------
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         final String dir = "src/main/resources/";
         String arq = "pessoas.txt";
 
@@ -43,16 +46,16 @@ public class MedicoTeste implements ApplicationRunner {
                     if("M".equalsIgnoreCase(campos[0])) {
 
                         try {
-                            Medico med1 = new Medico();
-                            med1.setNome(campos[1]);
-                            med1.setTelefone(campos[2]);
-                            med1.setEmail(campos[3]);
-                            med1.setCrm(campos[4]);
-                            med1.setEspecialista(Boolean.parseBoolean(campos[5]));
-                            med1.setPediatra(Boolean.parseBoolean(campos[6]));
-                            med1.setAnoFormacao(Integer.parseInt(campos[7]));
-                            System.out.println("Verifica tempo de formação: " + med1.validaPessoa());
-                            medicoService.incluir(med1);
+                            Medico medico = new Medico();
+                            medico.setNome(campos[1]);
+                            medico.setTelefone(campos[2]);
+                            medico.setEmail(campos[3]);
+                            medico.setCrm(campos[4]);
+                            medico.setEspecialista(Boolean.parseBoolean(campos[5]));
+                            medico.setPediatra(Boolean.parseBoolean(campos[6]));
+                            medico.setAnoFormacao(Integer.parseInt(campos[7]));
+                            System.out.println("Verifica tempo de formação: " + medico.validaPessoa());
+                            medicoService.incluir(medico);
                         } catch (FaltaExperienciaException e) {
                             System.out.println("[ERROR - MEDICO] " + e.getMessage());
                         }

@@ -3,7 +3,6 @@ package br.edu.infnet.appatendimento.controller;
 import br.edu.infnet.appatendimento.model.domain.Atendente;
 import br.edu.infnet.appatendimento.model.domain.Usuario;
 import br.edu.infnet.appatendimento.model.service.AtendenteService;
-import br.edu.infnet.appatendimento.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
-
-import java.util.*;
 
 @Controller
 public class AtendenteController {

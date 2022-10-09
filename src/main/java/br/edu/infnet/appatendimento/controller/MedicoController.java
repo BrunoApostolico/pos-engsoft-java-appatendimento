@@ -1,6 +1,7 @@
 package br.edu.infnet.appatendimento.controller;
 
 import br.edu.infnet.appatendimento.model.domain.Medico;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
 import br.edu.infnet.appatendimento.model.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class MedicoController {
@@ -15,9 +17,9 @@ public class MedicoController {
     private MedicoService medicoService;
 
     @GetMapping(value = "/medico/lista")
-    public String telaLista(Model model){
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
 
-        model.addAttribute("listagem",medicoService.obterLista());
+        model.addAttribute("listagem",medicoService.obterLista(usuario));
 
         return "medico/lista";
     }
@@ -28,7 +30,9 @@ public class MedicoController {
     }
 
     @PostMapping(value = "/medico/incluir")
-    public String incluir(Medico medico){
+    public String incluir(Medico medico, @SessionAttribute("user") Usuario usuario){
+
+        medico.setUsuario(usuario);
 
         medicoService.incluir(medico);
 

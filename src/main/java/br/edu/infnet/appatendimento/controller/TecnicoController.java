@@ -1,40 +1,43 @@
 package br.edu.infnet.appatendimento.controller;
 
 import br.edu.infnet.appatendimento.model.domain.Tecnico;
-import br.edu.infnet.appatendimento.model.test.AppImpressao;
+import br.edu.infnet.appatendimento.model.domain.Usuario;
+import br.edu.infnet.appatendimento.model.service.TecnicoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class TecnicoController {
-    private static Map<Integer, Tecnico> mapaTecnico = new HashMap<Integer, Tecnico>();
-    private static Integer id = 1;
-    public static void incluir(Tecnico tecnico){
-        tecnico.setId(id++);
 
-        mapaTecnico.put(tecnico.getId(), tecnico);
-
-        AppImpressao.relatorio("Inclusão do(a) técnico " + tecnico.getNome() + " realizada com sucesso!!!", tecnico);
-    }
-    public static Collection<Tecnico> obterLista(){
-        return mapaTecnico.values();
-    }
-    public static void excluir(Integer id){
-        mapaTecnico.remove(id);
-    }
+    @Autowired
+    private TecnicoService tecnicoService;
 
     @GetMapping(value = "/tecnico/lista")
-    public String telaLista(Model model){
-        model.addAttribute("listagem",obterLista());
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
+        model.addAttribute("listagem",tecnicoService.obterLista(usuario));
         return "tecnico/lista";
     }
+
+    @GetMapping(value = "/tecnico")
+    public String telaCadastro(){
+        return "tecnico/cadastro";
+    }
+
+    @PostMapping(value = "/tecnico/incluir")
+    public String incluir(Tecnico tecnico, @SessionAttribute("user") Usuario usuario){
+        tecnico.setUsuario(usuario);
+        tecnicoService.incluir(tecnico);
+        return "redirect:/tecnico/lista";
+    }
+
     @GetMapping(value = "/tecnico/{id}/excluir")
-    public String exclusao(@PathVariable Integer id){
-        excluir(id);
+    public String excluir(@PathVariable Integer id){
+        tecnicoService.excluir(id);
         return "redirect:/tecnico/lista";
     }
 }

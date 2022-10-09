@@ -1,6 +1,5 @@
 package br.edu.infnet.appatendimento;
 
-import br.edu.infnet.appatendimento.controller.AtendenteController;
 import br.edu.infnet.appatendimento.model.domain.Atendente;
 import br.edu.infnet.appatendimento.model.domain.Usuario;
 import br.edu.infnet.appatendimento.model.exceptions.IdadeAtendenteInvalidoException;
